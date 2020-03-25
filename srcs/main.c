@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 22:03:05 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/03/25 23:13:27 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/03/25 23:21:28 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int					main(int argc, char **argv)
 	else
 	{
 		ft_putstr("Program was started\n");
-		//start
 	}
 	return (0);
 } 
