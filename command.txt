@@ -1,0 +1,1 @@
+cc -I ./libft/includes -L libft -lft -I ./includes  srcs/main.c  -o fractol

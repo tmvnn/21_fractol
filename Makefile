@@ -6,11 +6,12 @@
 #    By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:32:39 by lbellona          #+#    #+#              #
-#    Updated: 2020/03/25 23:12:43 by timuryakubo      ###   ########.fr        #
+#    Updated: 2020/04/01 14:10:03 by timuryakubo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SOURCES 	= main.c
+SOURCES 	= main.c \
+			  mlx_init_del.c
 
 WWW 		= -Wall -Wextra -Werror
 
