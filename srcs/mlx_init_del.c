@@ -6,11 +6,31 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 13:43:30 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/01 18:43:15 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/07 23:08:05 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+t_complex		init_complex(double re, double im)
+{
+	t_complex	complex;
+
+	complex.re = re;
+	complex.im = im;
+	return (complex);
+}
+
+void			fractal_init(t_mlx *mlx)
+{
+	mlx->max_iter = 6;//ITERATIONS;
+	mlx->min_coord = init_complex(-2.0, -2.0);
+	mlx->max_coord.re = 2.0;
+	mlx->max_coord.im = mlx->min_coord.im
+		+ (mlx->max_coord.re - mlx->min_coord.re) * WIN_HEIGHT / WIN_WIDTH;
+	// fractal->k = init_complex(-0.4, 0.6);
+	mlx->color_shift = 0;
+}
 
 t_mlx			*mlx_delete(t_mlx *mlx)
 {
@@ -41,7 +61,7 @@ t_img			*new_image(t_mlx *mlx)
 		return (NULL);
 	if (!(image->ptr = mlx_new_image(mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT)))
 		return (del_image(mlx, image));
-	image->data = mlx_get_data_addr(image->ptr, &(image->bpp),
+	image->data = (int*)mlx_get_data_addr(image->ptr, &(image->bpp),
 									&(image->step), &(image->endian));
 	image->bpp /= 8;
 	return (image);
@@ -56,7 +76,6 @@ t_mlx			*mlx_window_img_init(t_mlx *mlx)
 		return (mlx_delete(mlx));
 	mlx->width = WIN_WIDTH;
 	mlx->height = WIN_HEIGHT;
-	mlx->color = POINT_COLOR;
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, mlx->width,
 														mlx->height, heading);
 	free(heading);
