@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 22:03:04 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/10 14:37:11 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/10 18:04:58 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,19 @@
 # include <stdio.h>
 # include <errno.h>
 # include <math.h>
+# include <pthread.h>
 
 # define WIN_HEIGHT 700
 # define WIN_WIDTH 700
-# define POINT_COLOR 0xFFFFFF
 # define THREADS 10
-# define ITERATIONS 25
+# define ITERATIONS 5
+
 # define ESC_CODE 53
+# define SPACE_CODE 49
+# define PLUS_CODE 24
+# define MINUS_CODE 27
+# define SCROLL_UP_CODE 4
+# define SCROLL_DOWN_CODE 5
 
 // typedef	struct		s_color
 // {
@@ -65,7 +71,7 @@ typedef struct			s_fractal
 	//t_func_v			viewport;
 	//t_func_p			pixel;
 	fr_function			function;
-	int					is_mouse;
+	int					is_static;
 }						t_fractal;
 
 typedef struct			s_mlx
@@ -95,13 +101,14 @@ void					draw(t_mlx *mlx);
 void					clean_img(t_img *image);
 void					clear_img(t_img *img);
 int						handle_key(int key, t_mlx *mlx);
+int						zoom_change(int key, int x, int y, t_mlx *mlx);
 int						pr_out(char *out_str);
 void					*pr_error(char *err_msg);
 void					set_pixel(t_mlx *mlx, int x, int y, t_rgba color);
 t_rgba					get_color(int iteration, t_mlx *mlx);
 int						f_mandelbrot(t_mlx *mlx);
 int						f_julia(t_mlx *mlx);
-int						julia_motion(int x, int y, t_mlx *mlx);
+int						julia_mouse_move(int x, int y, t_mlx *mlx);
 int						f_burningship(t_mlx *mlx);
 
 #endif

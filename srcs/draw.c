@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 19:44:23 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/10 14:36:12 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/10 17:17:00 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,6 @@ void					draw(t_mlx *mlx)
 	mlx->factor = init_complex(
 		(mlx->max_coord.re - mlx->min_coord.re) / (WIN_WIDTH - 1),
 		(mlx->max_coord.im - mlx->min_coord.im) / (WIN_HEIGHT - 1));
-	// color.a = 0;
-	// color.r = 255;
-	// color.g = 0;
-	// color.b = 0;
 	y = -1;
 	while (++y < WIN_HEIGHT)
 	{
