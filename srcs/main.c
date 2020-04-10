@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 22:03:05 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/07 21:26:22 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/10 14:31:05 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 t_fractal				*get_fract_params()
 {
 	static t_fractal 	fract_params[4] = {
-		{"mandelbrot", 0},
-		{"julia", 1},
-		{"burningship", 0},
-		{NULL, 0}
+		{"mandelbrot", &f_mandelbrot, 0},
+		{"julia", &f_julia, 1},
+		{"burningship", &f_burningship, 0},
+		{NULL, NULL, 0}
 	};
 	return (fract_params);
 }
@@ -40,7 +40,7 @@ t_fractal				*is_fractal(char *str)
 
 int					handle_key(int key, t_mlx *mlx)
 {
-	key == 53 ? exit(0) : (void)0;
+	key == ESC_CODE ? exit(0) : (void)0;
 	//clear_img(mlx->image);
 	clear_img(mlx->image);
 	draw(mlx);
@@ -63,6 +63,8 @@ int						main(int argc, char **argv)
 	//clean_img(mlx.image);
 	//mlx_expose_hook(mlx.win_ptr, handle_key, &mlx);
 	mlx_hook(mlx.win_ptr, 2, 0, handle_key, &mlx);
+	if (!(ft_strcmp(mlx.fractal->name, "julia")))
+		mlx_hook(mlx.win_ptr, 6, 0, julia_motion, &mlx);
 	mlx_loop(mlx.mlx_ptr);
 	return (0);
 }

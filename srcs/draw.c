@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 19:44:23 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/07 21:27:23 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/10 14:36:12 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,10 @@ void					draw(t_mlx *mlx)
 	{
 		mlx->c.im = mlx->max_coord.im - y * mlx->factor.im;
 		x = -1;
-		//printf("c.im = %f\n", mlx->c.im);
-		//exit(1);
 		while (++x < WIN_WIDTH)
 		{
 			mlx->c.re = mlx->min_coord.re + x * mlx->factor.re;
-			color = get_color(f_mandelbrot(mlx), mlx);
-			//printf("red = %d\n", color.r);
-			//printf("\n");
+			color = get_color(mlx->fractal->function(mlx), mlx);
 			set_pixel(mlx, x, y, color);
 		}
 	}

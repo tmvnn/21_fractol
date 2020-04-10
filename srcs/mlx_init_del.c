@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 13:43:30 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/07 23:08:05 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/10 13:35:18 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_complex		init_complex(double re, double im)
 
 void			fractal_init(t_mlx *mlx)
 {
-	mlx->max_iter = 6;//ITERATIONS;
+	mlx->max_iter = ITERATIONS;
 	mlx->min_coord = init_complex(-2.0, -2.0);
 	mlx->max_coord.re = 2.0;
 	mlx->max_coord.im = mlx->min_coord.im

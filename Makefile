@@ -6,14 +6,14 @@
 #    By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:32:39 by lbellona          #+#    #+#              #
-#    Updated: 2020/04/07 21:03:24 by timuryakubo      ###   ########.fr        #
+#    Updated: 2020/04/10 13:29:13 by timuryakubo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SOURCES 	= main.c \
 			  mlx_init_del.c \
 			  draw.c \
-			  mandelbrot.c \
+			  fractals.c \
 			  color.c \
 			  out.c 
 
