@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 22:03:04 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/10 18:04:58 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/13 18:30:41 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define WIN_HEIGHT 700
 # define WIN_WIDTH 700
 # define THREADS 10
-# define ITERATIONS 5
+# define ITERATIONS 25
 
 # define ESC_CODE 53
 # define SPACE_CODE 49
@@ -63,7 +63,7 @@ typedef struct			s_img
 }						t_img;
 
 typedef struct 			s_mlx	t_mlx;
-typedef	int				(*fr_function)(t_mlx *mlx);
+typedef	int				(*fr_function)(t_mlx *mlx, t_complex c);
 
 typedef struct			s_fractal
 {
@@ -73,6 +73,19 @@ typedef struct			s_fractal
 	fr_function			function;
 	int					is_static;
 }						t_fractal;
+
+typedef struct			s_thread
+{
+	int					id;
+	t_complex			c;
+	t_mlx				*mlx;
+}						t_thread;
+
+typedef struct			s_thread_args
+{
+	pthread_t			threads[THREADS];
+	t_thread			args[THREADS];
+}						t_thread_args;
 
 typedef struct			s_mlx
 {
@@ -86,9 +99,13 @@ typedef struct			s_mlx
 	t_complex			factor;
 	t_complex			c;
 	t_complex			k;
+	t_rgba				color;//
 	int					color_shift;
 	t_img				*image;
 	t_fractal			*fractal;
+	t_thread_args		thr_args;
+	int					draw_count;
+	int					p_drawn;
 }						t_mlx;
 
 t_mlx 					*mlx_window_img_init(t_mlx *mlx);
@@ -98,6 +115,8 @@ t_complex				init_complex(double re, double im);
 void					fractal_init(t_mlx *mlx);
 
 void					draw(t_mlx *mlx);
+void					*draw_thread(void *cur_t);
+void					fill_image(t_mlx *mlx);
 void					clean_img(t_img *image);
 void					clear_img(t_img *img);
 int						handle_key(int key, t_mlx *mlx);
@@ -106,9 +125,9 @@ int						pr_out(char *out_str);
 void					*pr_error(char *err_msg);
 void					set_pixel(t_mlx *mlx, int x, int y, t_rgba color);
 t_rgba					get_color(int iteration, t_mlx *mlx);
-int						f_mandelbrot(t_mlx *mlx);
-int						f_julia(t_mlx *mlx);
+int						f_mandelbrot(t_mlx *mlx, t_complex c);
+int						f_julia(t_mlx *mlx, t_complex c);
 int						julia_mouse_move(int x, int y, t_mlx *mlx);
-int						f_burningship(t_mlx *mlx);
+int						f_burningship(t_mlx *mlx, t_complex c);
 
 #endif
