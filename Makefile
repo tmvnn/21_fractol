@@ -6,7 +6,7 @@
 #    By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:32:39 by lbellona          #+#    #+#              #
-#    Updated: 2020/04/10 16:46:48 by timuryakubo      ###   ########.fr        #
+#    Updated: 2020/04/13 22:49:26 by timuryakubo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SOURCES 	= main.c \
 			  color.c \
 			  out.c 
 
-WWW 		= -Wall -Wextra -Werror
+WWW 		= -Wall -Wextra -Werror -O3
 
 NAME 		= fractol
 FT			= ./libft/

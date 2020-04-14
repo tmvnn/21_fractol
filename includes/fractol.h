@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 22:03:04 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/13 18:30:41 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/14 15:03:38 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,24 @@
 
 # include "libft.h"
 # include "mlx.h"
-# include <stdio.h>
 # include <errno.h>
 # include <math.h>
 # include <pthread.h>
 
 # define WIN_HEIGHT 700
 # define WIN_WIDTH 700
-# define THREADS 10
-# define ITERATIONS 25
-
+# define THREADS 8
+# define ITERATIONS 50
+# define COLOR_SILVER 0xCCCCCC
+# define COLOR_TUNDORA 0x444444
 # define ESC_CODE 53
 # define SPACE_CODE 49
 # define PLUS_CODE 24
 # define MINUS_CODE 27
+# define R_CODE 15
+# define H_CODE 4
 # define SCROLL_UP_CODE 4
 # define SCROLL_DOWN_CODE 5
-
-// typedef	struct		s_color
-// {
-// 	uint8_t			channel[4];
-// }					t_color;
 
 typedef struct		s_rgba
 {
@@ -68,8 +65,6 @@ typedef	int				(*fr_function)(t_mlx *mlx, t_complex c);
 typedef struct			s_fractal
 {
 	char				*name;
-	//t_func_v			viewport;
-	//t_func_p			pixel;
 	fr_function			function;
 	int					is_static;
 }						t_fractal;
@@ -99,13 +94,11 @@ typedef struct			s_mlx
 	t_complex			factor;
 	t_complex			c;
 	t_complex			k;
-	t_rgba				color;//
+	uint8_t				help_mode;
 	int					color_shift;
 	t_img				*image;
 	t_fractal			*fractal;
 	t_thread_args		thr_args;
-	int					draw_count;
-	int					p_drawn;
 }						t_mlx;
 
 t_mlx 					*mlx_window_img_init(t_mlx *mlx);
@@ -117,17 +110,18 @@ void					fractal_init(t_mlx *mlx);
 void					draw(t_mlx *mlx);
 void					*draw_thread(void *cur_t);
 void					fill_image(t_mlx *mlx);
-void					clean_img(t_img *image);
 void					clear_img(t_img *img);
+void					draw_help(t_mlx *mlx);
 int						handle_key(int key, t_mlx *mlx);
 int						zoom_change(int key, int x, int y, t_mlx *mlx);
 int						pr_out(char *out_str);
-void					*pr_error(char *err_msg);
+int						usage_out();
 void					set_pixel(t_mlx *mlx, int x, int y, t_rgba color);
 t_rgba					get_color(int iteration, t_mlx *mlx);
 int						f_mandelbrot(t_mlx *mlx, t_complex c);
 int						f_julia(t_mlx *mlx, t_complex c);
 int						julia_mouse_move(int x, int y, t_mlx *mlx);
 int						f_burningship(t_mlx *mlx, t_complex c);
+int						f_mandelbar(t_mlx *mlx, t_complex c);
 
 #endif

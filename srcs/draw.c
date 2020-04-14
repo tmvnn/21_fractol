@@ -6,25 +6,11 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 19:44:23 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/13 18:32:36 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/14 14:58:22 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-void					clean_img(t_img *image)
-{
-	ft_bzero(image->data, WIN_WIDTH * WIN_HEIGHT * image->bpp);
-}
-
-void					clear_img(t_img *img)
-{
-	int					i;
-
-	i = -1;
-	while (++i < WIN_WIDTH * WIN_HEIGHT)
-		img->data[i] = 0;
-}
 
 void					set_pixel(t_mlx *mlx, int x, int y, t_rgba color)
 {
@@ -35,7 +21,6 @@ void					fill_image(t_mlx *mlx)
 {
 	int					y;
 	int					x;
-	t_rgba				color;
 	
 	y = -1;
 	while (++y < WIN_HEIGHT)
@@ -45,9 +30,8 @@ void					fill_image(t_mlx *mlx)
 		while (++x < WIN_WIDTH)
 		{
 			mlx->c.re = mlx->min_coord.re + x * mlx->factor.re;
-			color = get_color(mlx->fractal->function(mlx, mlx->c), mlx);
-			set_pixel(mlx, x, y, color);
-			mlx->p_drawn++;
+			set_pixel(mlx, x, y, 
+						get_color(mlx->fractal->function(mlx, mlx->c), mlx));
 		}
 	}
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->image->ptr, 0, 0);
@@ -57,36 +41,20 @@ void					*draw_thread(void *cur_t)
 {
 	int					y;
 	int					x;
-	t_rgba				color;
 	t_thread			*t;
-	int					end;
 	
 	t = (t_thread *)cur_t;
 	y = -1 + WIN_HEIGHT / THREADS * t->id;
-	end = WIN_HEIGHT / THREADS * (t->id + 1);
-	//printf("id = %d start(y) = %d end = %d\n", t->id, y, end);
-	//if (t->id == 0 || t->id == 1)
-	{
-	while (++y < end)
+	while (++y < WIN_HEIGHT / THREADS * (t->id + 1))
 	{
 		t->c.im = t->mlx->max_coord.im - y * t->mlx->factor.im;
-		//t->mlx->c.im = t->mlx->max_coord.im - y * t->mlx->factor.im;
 		x = -1;
 		while (++x < WIN_WIDTH)
 		{
-			// if (x == 0)
-			// 	printf("y = %d, x = %d, id = %d\n", y, x, t->id);
 			t->c.re = t->mlx->min_coord.re + x * t->mlx->factor.re;
-			//t->mlx->c.re = t->mlx->min_coord.re + x * t->mlx->factor.re;
-			//t->mlx->c = init_complex(t->c.re, t->c.im);
-			color = get_color(t->mlx->fractal->function(t->mlx, t->c), t->mlx);
-			set_pixel(t->mlx, x, y, color);
-
-			//printf("y = %d, x = %d\n", y, x);
-			t->mlx->p_drawn++;
+			set_pixel(t->mlx, x, y, 
+					get_color(t->mlx->fractal->function(t->mlx, t->c), t->mlx));
 		}
-	}
-	//printf("y = %d, x = %d\n", y, x);
 	}
 	return (NULL);
 }
@@ -96,7 +64,6 @@ void					draw(t_mlx *mlx)
 	int					i;
 	t_thread_args		*t;
 
-	//printf("draw #%d \n", mlx->draw_count++);
 	t = &(mlx->thr_args);
 	mlx->factor = init_complex(
 		(mlx->max_coord.re - mlx->min_coord.re) / (WIN_WIDTH - 1),
@@ -105,37 +72,53 @@ void					draw(t_mlx *mlx)
 	while (++i < THREADS)
 	{
 		t->args[i].id = i;
-		//printf("arg_id = %d\n", t->args[i].id);
 		t->args[i].mlx = mlx;
 		pthread_create(t->threads + i, NULL, draw_thread, &(t->args[i]));
 	}
 	while (i-- > 0)
 		pthread_join(t->threads[i], NULL);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->image->ptr, 0, 0);
-	//fill_image(mlx);
-	//printf(" drawn_p = %d \n", mlx->p_drawn);
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, WIN_WIDTH - WIN_WIDTH * 0.13, 0, COLOR_SILVER,
+		"Help - H");
 }
-
 
 // void					draw(t_mlx *mlx)
 // {
-// 	int					i;
-// 	//t_thread_args		t;
-
 // 	mlx->factor = init_complex(
 // 		(mlx->max_coord.re - mlx->min_coord.re) / (WIN_WIDTH - 1),
 // 		(mlx->max_coord.im - mlx->min_coord.im) / (WIN_HEIGHT - 1));
-// 	i = -1;
-// 	while (++i < THREADS)
-// 	{
-// 		t.args[i].id = i;
-// 		//printf("arg_id = %d\n", t.args[i].id);
-// 		t.args[i].mlx = mlx;
-// 		pthread_create(&(t.threads[i]), NULL, draw_thread, &(t.args[i]));
-// 	}
-// 	while (i-- > 0)
-// 		pthread_join(t.threads[i], NULL);
-// 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->image->ptr, 0, 0);
-	
-// 	//fill_image(mlx);
+// 	fill_image(mlx);
 // }
+
+void					clear_img(t_img *img)
+{
+	int					i;
+
+	i = -1;
+	while (++i < WIN_WIDTH * WIN_HEIGHT)
+		img->data[i] = 0;
+}
+
+void					draw_help(t_mlx *mlx)
+{
+	clear_img(mlx->image);
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->image->ptr, 0, 0);
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 10, COLOR_SILVER,
+		"Controls :");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 45, COLOR_SILVER,
+		"Reset          - R");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 75, COLOR_SILVER,
+		"Color Shift    - C");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 105, COLOR_SILVER,
+		"Move           - Arrows");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 135, COLOR_SILVER,
+		"Zoom           - Scroll");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 165, COLOR_SILVER,
+		"Iterations     - +/-");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 195, COLOR_SILVER,
+		"Julia Constant - Mouse");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 225, COLOR_SILVER,
+		"Mouse Lock     - Space");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 255, COLOR_SILVER,
+		"Close Help     - H");
+}

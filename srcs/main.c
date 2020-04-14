@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 22:03:05 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/13 16:35:51 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/14 14:32:57 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 t_fractal				*get_fract_params()
 {
-	static t_fractal 	fract_params[4] = {
+	static t_fractal 	fract_params[5] = {
 		{"mandelbrot", &f_mandelbrot, 1},
 		{"julia", &f_julia, 1},
 		{"burningship", &f_burningship, 1},
+		{"mandelbar", &f_mandelbar, 1},
 		{NULL, NULL, 0}
 	};
 	return (fract_params);
@@ -43,16 +44,12 @@ int						main(int argc, char **argv)
 	t_mlx				mlx;
 	
 	errno = 0;
-	if (argc != 2)
-		return(pr_out("Usage : ./fractol <fract_name>\n"));
-	if (!(mlx.fractal = is_fractal(argv[1])))
-		return(pr_out("Error : invalid fractal name\n"));
+	if (argc != 2 || !(mlx.fractal = is_fractal(argv[1])))
+		return(usage_out());
 	fractal_init(&mlx);
 	if (!(mlx_window_img_init(&mlx)))
 		return(pr_out("Error : could not initialize mlx\n"));
 	draw(&mlx);
-	//clean_img(mlx.image);
-	//mlx_expose_hook(mlx.win_ptr, handle_key, &mlx);
 	mlx_hook(mlx.win_ptr, 2, 0, handle_key, &mlx);
 	mlx_hook(mlx.win_ptr, 4, 0, zoom_change, &mlx);
 	if (!(ft_strcmp(mlx.fractal->name, "julia")))

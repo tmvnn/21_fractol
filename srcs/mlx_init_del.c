@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 13:43:30 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/13 17:27:43 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/14 14:30:49 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ void			fractal_init(t_mlx *mlx)
 		+ (mlx->max_coord.re - mlx->min_coord.re) * WIN_HEIGHT / WIN_WIDTH;
 	mlx->k = init_complex(-0.4, 0.6);
 	mlx->color_shift = 0;
-	mlx->draw_count = 0;
-	mlx->p_drawn = 0;
+	mlx->help_mode = 0;
 }
 
 t_mlx			*mlx_delete(t_mlx *mlx)

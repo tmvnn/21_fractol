@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 14:32:26 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/10 17:15:07 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/14 14:45:38 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int				julia_mouse_move(int x, int y, t_mlx *mlx)
 {
-	if (!mlx->fractal->is_static) //(!fractol->is_help && !fractol->is_julia_fixed)
+	if (!mlx->fractal->is_static && !mlx->help_mode) //(!fractol->is_help && !fractol->is_julia_fixed)
 	{
 		mlx->k = init_complex(
 			4 * ((double)x / WIN_WIDTH - 0.5),
@@ -34,7 +34,7 @@ int				zoom_change(int key, int x, int y, t_mlx *mlx)
 	t_complex	mouse;
 	double		delta;
 	
-	if (key == SCROLL_UP_CODE || key == SCROLL_DOWN_CODE)
+	if (!mlx->help_mode && (key == SCROLL_UP_CODE || key == SCROLL_DOWN_CODE))
 	{
 		mouse = init_complex(
 			(double)x / (WIN_WIDTH / (mlx->max_coord.re - mlx->min_coord.re))
@@ -42,9 +42,9 @@ int				zoom_change(int key, int x, int y, t_mlx *mlx)
 			(double)y / (WIN_HEIGHT / (mlx->max_coord.im - mlx->min_coord.im))
 				* -1 + mlx->max_coord.im);
 		if (key == SCROLL_UP_CODE)
-			delta = 1.0 / 0.90;
+			delta = 1.0 / 0.80;
 		else
-			delta = 1.0 / 1.10;
+			delta = 1.0 / 1.20;
 		mlx->min_coord.re = interpolate(mouse.re, mlx->min_coord.re, delta);
 		mlx->min_coord.im = interpolate(mouse.im, mlx->min_coord.im, delta);
 		mlx->max_coord.re = interpolate(mouse.re, mlx->max_coord.re, delta);
