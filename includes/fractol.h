@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 22:03:04 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/14 15:03:38 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/16 00:50:34 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "libft.h"
 # include "mlx.h"
-# include <errno.h>
 # include <math.h>
 # include <pthread.h>
 
@@ -31,8 +30,13 @@
 # define MINUS_CODE 27
 # define R_CODE 15
 # define H_CODE 4
+# define C_CODE 8
 # define SCROLL_UP_CODE 4
 # define SCROLL_DOWN_CODE 5
+# define ALPHA_BITS 0xFF000000
+# define RED_BITS 0x00FF0000
+# define GREEN_BITS 0x0000FF00
+# define BLUE_BITS 0x000000FF
 
 typedef struct		s_rgba
 {
@@ -110,18 +114,21 @@ void					fractal_init(t_mlx *mlx);
 void					draw(t_mlx *mlx);
 void					*draw_thread(void *cur_t);
 void					fill_image(t_mlx *mlx);
-void					clear_img(t_img *img);
-void					draw_help(t_mlx *mlx);
-int						handle_key(int key, t_mlx *mlx);
-int						zoom_change(int key, int x, int y, t_mlx *mlx);
-int						pr_out(char *out_str);
-int						usage_out();
 void					set_pixel(t_mlx *mlx, int x, int y, t_rgba color);
 t_rgba					get_color(int iteration, t_mlx *mlx);
+void					draw_help(t_mlx *mlx);
+void					clear_img(t_img *img);
+
+int						handle_key(int key, t_mlx *mlx);
+int						zoom_change(int key, int x, int y, t_mlx *mlx);
+int						julia_mouse_move(int x, int y, t_mlx *mlx);
+
 int						f_mandelbrot(t_mlx *mlx, t_complex c);
 int						f_julia(t_mlx *mlx, t_complex c);
-int						julia_mouse_move(int x, int y, t_mlx *mlx);
 int						f_burningship(t_mlx *mlx, t_complex c);
 int						f_mandelbar(t_mlx *mlx, t_complex c);
+
+int						pr_out(char *out_str);
+int						usage_out();
 
 #endif

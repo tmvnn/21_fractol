@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 14:32:26 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/14 14:45:38 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/16 00:30:11 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int				julia_mouse_move(int x, int y, t_mlx *mlx)
 {
-	if (!mlx->fractal->is_static && !mlx->help_mode) //(!fractol->is_help && !fractol->is_julia_fixed)
+	if (!mlx->fractal->is_static && !mlx->help_mode)
 	{
 		mlx->k = init_complex(
 			4 * ((double)x / WIN_WIDTH - 0.5),

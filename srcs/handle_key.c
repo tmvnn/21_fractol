@@ -6,13 +6,13 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 16:45:16 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/14 14:52:00 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/16 00:19:50 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static int	help(t_mlx *mlx)
+static int			help(t_mlx *mlx)
 {
 	mlx->help_mode = !mlx->help_mode;
 	if (mlx->help_mode)
@@ -32,6 +32,7 @@ int					handle_key(int key, t_mlx *mlx)
 		key == PLUS_CODE ? mlx->max_iter++ : (void)0;
 		key == R_CODE ? fractal_init(mlx) : (void)0;
 		key == MINUS_CODE && mlx->max_iter >= 0 ? mlx->max_iter-- : (void)0;
+		key == C_CODE ? mlx->color_shift = (mlx->color_shift + 1) % 3 : (void)0;
 		draw(mlx);
 	}
 	if (key == H_CODE)

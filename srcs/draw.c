@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 19:44:23 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/14 14:58:22 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/16 01:00:00 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,15 +110,15 @@ void					draw_help(t_mlx *mlx)
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 75, COLOR_SILVER,
 		"Color Shift    - C");
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 105, COLOR_SILVER,
-		"Move           - Arrows");
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 135, COLOR_SILVER,
 		"Zoom           - Scroll");
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 165, COLOR_SILVER,
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 135, COLOR_SILVER,
 		"Iterations     - +/-");
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 195, COLOR_SILVER,
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 165, COLOR_SILVER,
 		"Julia Constant - Mouse");
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 225, COLOR_SILVER,
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 195, COLOR_SILVER,
 		"Mouse Lock     - Space");
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 255, COLOR_SILVER,
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 225, COLOR_SILVER,
 		"Close Help     - H");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 255, COLOR_SILVER,
+		"Exit           - Esc");
 }

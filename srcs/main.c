@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 22:03:05 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/14 14:32:57 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/16 00:59:12 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int						main(int argc, char **argv)
 {
 	t_mlx				mlx;
 	
-	errno = 0;
 	if (argc != 2 || !(mlx.fractal = is_fractal(argv[1])))
 		return(usage_out());
 	fractal_init(&mlx);
