@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 13:43:30 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/16 23:30:21 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/16 23:52:15 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ t_mlx			*mlx_window_img_init(t_mlx *mlx)
 	heading = ft_strjoin("Fract'ol ", mlx->fractal->name);
 	if (!(mlx->mlx_ptr = mlx_init()) || !(mlx->image = new_image(mlx)))
 		return (mlx_delete(mlx));
-	//mlx->width = WIN_WIDTH;
-	//mlx->height = WIN_HEIGHT;
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIN_WIDTH,
 														WIN_HEIGHT, heading);
 	free(heading);

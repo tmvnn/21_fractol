@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 22:03:04 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/16 23:36:31 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/16 23:52:20 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ typedef struct			s_img
 	int					bpp;
 	int					step;
 	int					endian;
-	int					width;
-	int					height;
 }						t_img;
 
 typedef struct 			s_mlx	t_mlx;

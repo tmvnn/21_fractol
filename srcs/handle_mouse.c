@@ -6,20 +6,11 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 14:32:26 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/16 23:16:23 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/16 23:48:25 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-t_complex		init_complex(double re, double im)
-{
-	t_complex	complex;
-
-	complex.re = re;
-	complex.im = im;
-	return (complex);
-}
 
 int				julia_mouse_move(int x, int y, t_mlx *mlx)
 {

@@ -6,11 +6,20 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 21:01:52 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/14 13:26:53 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/16 23:48:30 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+t_complex		init_complex(double re, double im)
+{
+	t_complex	complex;
+
+	complex.re = re;
+	complex.im = im;
+	return (complex);
+}
 
 int				f_mandelbrot(t_mlx *mlx, t_complex c)
 {
