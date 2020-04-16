@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 22:03:04 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/16 00:50:34 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/16 23:36:31 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define PLUS_CODE 24
 # define MINUS_CODE 27
 # define R_CODE 15
+# define T_CODE 17
 # define H_CODE 4
 # define C_CODE 8
 # define SCROLL_UP_CODE 4
@@ -90,8 +91,6 @@ typedef struct			s_mlx
 {
 	void				*mlx_ptr;
 	void				*win_ptr;
-	int					width;
-	int					height;
 	int					max_iter;
 	t_complex			max_coord;
 	t_complex			min_coord;
@@ -99,6 +98,7 @@ typedef struct			s_mlx
 	t_complex			c;
 	t_complex			k;
 	uint8_t				help_mode;
+	uint8_t				use_threads;
 	int					color_shift;
 	t_img				*image;
 	t_fractal			*fractal;
@@ -112,7 +112,9 @@ t_complex				init_complex(double re, double im);
 void					fractal_init(t_mlx *mlx);
 
 void					draw(t_mlx *mlx);
+void					draw_by_multi_threads(t_mlx *mlx);
 void					*draw_thread(void *cur_t);
+void					draw_by_single_thread(t_mlx *mlx);
 void					fill_image(t_mlx *mlx);
 void					set_pixel(t_mlx *mlx, int x, int y, t_rgba color);
 t_rgba					get_color(int iteration, t_mlx *mlx);

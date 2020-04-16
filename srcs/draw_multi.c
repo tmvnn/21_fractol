@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   draw_multi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 19:44:23 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/16 01:00:00 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/16 23:42:28 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,6 @@
 void					set_pixel(t_mlx *mlx, int x, int y, t_rgba color)
 {
 	*(mlx->image->data + ((x + y * WIN_WIDTH))) = (*(int *)&color);
-}
-
-void					fill_image(t_mlx *mlx)
-{
-	int					y;
-	int					x;
-	
-	y = -1;
-	while (++y < WIN_HEIGHT)
-	{
-		mlx->c.im = mlx->max_coord.im - y * mlx->factor.im;
-		x = -1;
-		while (++x < WIN_WIDTH)
-		{
-			mlx->c.re = mlx->min_coord.re + x * mlx->factor.re;
-			set_pixel(mlx, x, y, 
-						get_color(mlx->fractal->function(mlx, mlx->c), mlx));
-		}
-	}
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->image->ptr, 0, 0);
 }
 
 void					*draw_thread(void *cur_t)
@@ -59,7 +39,7 @@ void					*draw_thread(void *cur_t)
 	return (NULL);
 }
 
-void					draw(t_mlx *mlx)
+void					draw_by_multi_threads(t_mlx *mlx)
 {
 	int					i;
 	t_thread_args		*t;
@@ -82,14 +62,6 @@ void					draw(t_mlx *mlx)
 		"Help - H");
 }
 
-// void					draw(t_mlx *mlx)
-// {
-// 	mlx->factor = init_complex(
-// 		(mlx->max_coord.re - mlx->min_coord.re) / (WIN_WIDTH - 1),
-// 		(mlx->max_coord.im - mlx->min_coord.im) / (WIN_HEIGHT - 1));
-// 	fill_image(mlx);
-// }
-
 void					clear_img(t_img *img)
 {
 	int					i;
@@ -106,19 +78,21 @@ void					draw_help(t_mlx *mlx)
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 10, COLOR_SILVER,
 		"Controls :");
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 45, COLOR_SILVER,
-		"Reset          - R");
+		"Reset                    - R");
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 75, COLOR_SILVER,
-		"Color Shift    - C");
+		"Color Shift              - C");
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 105, COLOR_SILVER,
-		"Zoom           - Scroll");
+		"On/Off multithreading    - T");
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 135, COLOR_SILVER,
-		"Iterations     - +/-");
+		"Zoom                     - Scroll");
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 165, COLOR_SILVER,
-		"Julia Constant - Mouse");
+		"Iterations               - +/-");
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 195, COLOR_SILVER,
-		"Mouse Lock     - Space");
+		"Julia Constant           - Mouse");
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 225, COLOR_SILVER,
-		"Close Help     - H");
+		"Mouse Lock               - Space");
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 255, COLOR_SILVER,
-		"Exit           - Esc");
+		"Close Help               - H");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 285, COLOR_SILVER,
+		"Exit                     - Esc");
 }

@@ -6,13 +6,14 @@
 #    By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:32:39 by lbellona          #+#    #+#              #
-#    Updated: 2020/04/13 22:49:26 by timuryakubo      ###   ########.fr        #
+#    Updated: 2020/04/16 23:23:15 by timuryakubo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SOURCES 	= main.c \
 			  mlx_init_del.c \
-			  draw.c \
+			  draw_multi.c \
+			  draw_single.c \
 			  fractals.c \
 			  handle_key.c \
 			  handle_mouse.c \

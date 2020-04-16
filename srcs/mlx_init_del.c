@@ -6,20 +6,11 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 13:43:30 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/14 14:30:49 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/16 23:30:21 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-t_complex		init_complex(double re, double im)
-{
-	t_complex	complex;
-
-	complex.re = re;
-	complex.im = im;
-	return (complex);
-}
 
 void			fractal_init(t_mlx *mlx)
 {
@@ -31,6 +22,7 @@ void			fractal_init(t_mlx *mlx)
 	mlx->k = init_complex(-0.4, 0.6);
 	mlx->color_shift = 0;
 	mlx->help_mode = 0;
+	mlx->use_threads = 1;
 }
 
 t_mlx			*mlx_delete(t_mlx *mlx)
@@ -75,10 +67,10 @@ t_mlx			*mlx_window_img_init(t_mlx *mlx)
 	heading = ft_strjoin("Fract'ol ", mlx->fractal->name);
 	if (!(mlx->mlx_ptr = mlx_init()) || !(mlx->image = new_image(mlx)))
 		return (mlx_delete(mlx));
-	mlx->width = WIN_WIDTH;
-	mlx->height = WIN_HEIGHT;
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, mlx->width,
-														mlx->height, heading);
+	//mlx->width = WIN_WIDTH;
+	//mlx->height = WIN_HEIGHT;
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIN_WIDTH,
+														WIN_HEIGHT, heading);
 	free(heading);
 	return (mlx);
 }
