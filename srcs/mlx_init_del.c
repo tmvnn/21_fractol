@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_init_del.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 13:43:30 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/16 23:52:15 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/19 17:20:17 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_img			*del_image(t_mlx *mlx, t_img *image)
 t_img			*new_image(t_mlx *mlx)
 {
 	t_img		*image;
-	
+
 	if (!(image = ft_memalloc(sizeof(t_img))))
 		return (NULL);
 	if (!(image->ptr = mlx_new_image(mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT)))
@@ -65,7 +65,8 @@ t_mlx			*mlx_window_img_init(t_mlx *mlx)
 	char		*heading;
 
 	heading = ft_strjoin("Fract'ol ", mlx->fractal->name);
-	if (!(mlx->mlx_ptr = mlx_init()) || !(mlx->image = new_image(mlx)))
+	if (!(mlx->mlx_ptr = mlx_init()) ||
+			!(mlx->image = new_image(mlx)))
 		return (mlx_delete(mlx));
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIN_WIDTH,
 														WIN_HEIGHT, heading);

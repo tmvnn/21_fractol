@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 22:03:04 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/16 23:52:20 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/19 16:56:15 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # define THREADS 8
 # define ITERATIONS 50
 # define COLOR_SILVER 0xCCCCCC
-# define COLOR_TUNDORA 0x444444
 # define ESC_CODE 53
 # define SPACE_CODE 49
 # define PLUS_CODE 24
@@ -34,6 +33,10 @@
 # define C_CODE 8
 # define SCROLL_UP_CODE 4
 # define SCROLL_DOWN_CODE 5
+# define UP_CODE 126
+# define DOWN_CODE 125
+# define LEFT_CODE 123
+# define RIGHT_CODE	124
 # define ALPHA_BITS 0xFF000000
 # define RED_BITS 0x00FF0000
 # define GREEN_BITS 0x0000FF00
@@ -124,11 +127,14 @@ int						zoom_change(int key, int x, int y, t_mlx *mlx);
 int						julia_mouse_move(int x, int y, t_mlx *mlx);
 
 int						f_mandelbrot(t_mlx *mlx, t_complex c);
+int						f_celtic_mandelbrot(t_mlx *mlx, t_complex c);
 int						f_julia(t_mlx *mlx, t_complex c);
 int						f_burningship(t_mlx *mlx, t_complex c);
+int						f_perpendicular_burning_ship(t_mlx *mlx, t_complex c);
 int						f_mandelbar(t_mlx *mlx, t_complex c);
+int						f_celtic_mandelbar(t_mlx *mlx, t_complex c);
 
 int						pr_out(char *out_str);
-int						usage_out();
+int						usage_out(void);
 
 #endif

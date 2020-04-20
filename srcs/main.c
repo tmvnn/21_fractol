@@ -3,24 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 22:03:05 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/16 00:59:12 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/19 17:28:15 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-t_fractal				*get_fract_params()
+static t_fractal		*get_fract_params(void)
 {
-	static t_fractal 	fract_params[5] = {
+	static t_fractal 	fract_params[8] = {
 		{"mandelbrot", &f_mandelbrot, 1},
+		{"celtic_mandelbrot", &f_celtic_mandelbrot, 1},
 		{"julia", &f_julia, 1},
 		{"burningship", &f_burningship, 1},
+		{"perpendicular_burningship", &f_perpendicular_burning_ship, 1},
 		{"mandelbar", &f_mandelbar, 1},
+		{"celtic_mandelbar", &f_celtic_mandelbar, 1},
 		{NULL, NULL, 0}
-	};
+		};
 	return (fract_params);
 }
 
@@ -42,7 +45,9 @@ t_fractal				*is_fractal(char *str)
 int						main(int argc, char **argv)
 {
 	t_mlx				mlx;
+	char				*t;
 	
+	t = ft_strdup("asd");
 	if (argc != 2 || !(mlx.fractal = is_fractal(argv[1])))
 		return(usage_out());
 	fractal_init(&mlx);

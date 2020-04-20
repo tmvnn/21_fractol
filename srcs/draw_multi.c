@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_multi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 19:44:23 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/16 23:42:28 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/19 17:01:27 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void					*draw_thread(void *cur_t)
 	int					y;
 	int					x;
 	t_thread			*t;
-	
+
 	t = (t_thread *)cur_t;
 	y = -1 + WIN_HEIGHT / THREADS * t->id;
 	while (++y < WIN_HEIGHT / THREADS * (t->id + 1))
@@ -32,8 +32,8 @@ void					*draw_thread(void *cur_t)
 		while (++x < WIN_WIDTH)
 		{
 			t->c.re = t->mlx->min_coord.re + x * t->mlx->factor.re;
-			set_pixel(t->mlx, x, y, 
-					get_color(t->mlx->fractal->function(t->mlx, t->c), t->mlx));
+			set_pixel(t->mlx, x, y,
+				get_color(t->mlx->fractal->function(t->mlx, t->c), t->mlx));
 		}
 	}
 	return (NULL);
@@ -58,8 +58,8 @@ void					draw_by_multi_threads(t_mlx *mlx)
 	while (i-- > 0)
 		pthread_join(t->threads[i], NULL);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->image->ptr, 0, 0);
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, WIN_WIDTH - WIN_WIDTH * 0.13, 0, COLOR_SILVER,
-		"Help - H");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, WIN_WIDTH - WIN_WIDTH * 0.13,
+												0, COLOR_SILVER, "Help - H");
 }
 
 void					clear_img(t_img *img)
@@ -84,15 +84,17 @@ void					draw_help(t_mlx *mlx)
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 105, COLOR_SILVER,
 		"On/Off multithreading    - T");
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 135, COLOR_SILVER,
-		"Zoom                     - Scroll");
+		"Move                     - Arrows");
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 165, COLOR_SILVER,
-		"Iterations               - +/-");
+		"Zoom                     - Scroll");
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 195, COLOR_SILVER,
-		"Julia Constant           - Mouse");
+		"Iterations               - +/-");
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 225, COLOR_SILVER,
-		"Mouse Lock               - Space");
+		"Julia Constant           - Mouse");
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 255, COLOR_SILVER,
-		"Close Help               - H");
+		"Mouse Lock               - Space");
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 285, COLOR_SILVER,
+		"Close Help               - H");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 315, COLOR_SILVER,
 		"Exit                     - Esc");
 }

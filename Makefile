@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+         #
+#    By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:32:39 by lbellona          #+#    #+#              #
-#    Updated: 2020/04/16 23:23:15 by timuryakubo      ###   ########.fr        #
+#    Updated: 2020/04/19 15:25:37 by lbellona         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ SOURCES 	= main.c \
 			  draw_multi.c \
 			  draw_single.c \
 			  fractals.c \
+			  fractals_more.c \
 			  handle_key.c \
 			  handle_mouse.c \
 			  color.c \

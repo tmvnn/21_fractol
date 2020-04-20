@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_single.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 23:20:45 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/16 23:39:11 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/19 16:54:45 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
