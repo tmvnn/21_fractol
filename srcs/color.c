@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 20:52:11 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/17 00:06:35 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/04/21 16:35:16 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 t_rgba		move_color(t_mlx *mlx, int c)
 {
-	int	i;
+	int		i;
 
 	i = -1;
-	while(++i < mlx->color_shift)
-		c = (c & ALPHA_BITS) | (c & RED_BITS) >> 8 | (c & GREEN_BITS) >> 8 | (c & BLUE_BITS) << 16;
+	while (++i < mlx->color_shift)
+		c = (c & ALPHA_BITS) | (c & RED_BITS) >> 8 | (c & GREEN_BITS) >> 8
+														| (c & BLUE_BITS) << 16;
 	return ((*(t_rgba *)&c));
 }
 

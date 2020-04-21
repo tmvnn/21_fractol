@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 13:43:30 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/19 17:20:17 by lbellona         ###   ########.fr       */
+/*   Updated: 2020/04/21 16:18:20 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ t_mlx			*mlx_delete(t_mlx *mlx)
 		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 	if (mlx->image != NULL)
 		del_image(mlx, mlx->image);
-	ft_memdel((void **)&mlx);
 	return (NULL);
 }
 
@@ -65,11 +64,11 @@ t_mlx			*mlx_window_img_init(t_mlx *mlx)
 	char		*heading;
 
 	heading = ft_strjoin("Fract'ol ", mlx->fractal->name);
-	if (!(mlx->mlx_ptr = mlx_init()) ||
-			!(mlx->image = new_image(mlx)))
+	if (!(mlx->image = new_image(mlx)))
+		return (NULL);
+	if (!(mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIN_WIDTH,
+													WIN_HEIGHT, heading)))
 		return (mlx_delete(mlx));
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIN_WIDTH,
-														WIN_HEIGHT, heading);
 	free(heading);
 	return (mlx);
 }

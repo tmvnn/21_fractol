@@ -6,7 +6,7 @@
 #    By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:32:39 by lbellona          #+#    #+#              #
-#    Updated: 2020/04/19 15:25:37 by lbellona         ###   ########.fr        #
+#    Updated: 2020/04/21 19:59:09 by lbellona         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,10 +57,10 @@ $(MLX_LIB):
 	@make -C $(MLX)
 
 $(NAME): $(OBJS_DIR)
-	cc $(WWW) $(OBJS_DIR) $(MLX_LNK) -o $@  -L libft -lft
+	gcc $(WWW) $(OBJS_DIR) $(MLX_LNK) -o $@  -L libft -lft
 
 $(SRCSDIR)/%.o:$(SRCSDIR)/%.c
-	cc $(WWW) $(INCLUDES) $(MLX_INC) -o $@ -c $<
+	gcc $(WWW) $(INCLUDES) $(MLX_INC) -o $@ -c $<
 
 clean:
 	make -C $(FT) clean

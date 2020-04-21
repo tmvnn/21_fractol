@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 14:32:26 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/19 16:54:40 by lbellona         ###   ########.fr       */
+/*   Updated: 2020/04/21 16:33:10 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int				zoom_change(int key, int x, int y, t_mlx *mlx)
 {
 	t_complex	mouse;
 	double		delta;
-	
+
 	if (!mlx->help_mode && (key == SCROLL_UP_CODE || key == SCROLL_DOWN_CODE))
 	{
 		mouse = init_complex(

@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 19:47:24 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/19 16:55:51 by lbellona         ###   ########.fr       */
+/*   Updated: 2020/04/21 16:08:20 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int						pr_out(char *out_str)
 
 int						usage_out(void)
 {
-	ft_putstr("Usage : ./fractol <fract_name>\n\n");
+	ft_putstr("Usage : ./fractol <fract_name_1> <fract_name_2> ... ");
+	ft_putstr("<fract_name_7>\n\n");
 	ft_putstr("List of available fractal names:\n");
 	ft_putstr("1: < mandelbrot >\n");
 	ft_putstr("2: < celtic_mandelbrot >\n");

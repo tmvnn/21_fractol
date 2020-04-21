@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 22:03:04 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/19 16:56:15 by lbellona         ###   ########.fr       */
+/*   Updated: 2020/04/21 20:13:09 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@
 # include "mlx.h"
 # include <math.h>
 # include <pthread.h>
+# include <stdint.h>
 
 # define WIN_HEIGHT 700
 # define WIN_WIDTH 700
+# define FRACT_COUNT 7
 # define THREADS 8
 # define ITERATIONS 50
 # define COLOR_SILVER 0xCCCCCC
@@ -42,19 +44,19 @@
 # define GREEN_BITS 0x0000FF00
 # define BLUE_BITS 0x000000FF
 
-typedef struct		s_rgba
+typedef struct			s_rgba
 {
 	uint8_t				b;
 	uint8_t				g;
 	uint8_t				r;
 	uint8_t				a;
-}					t_rgba;
+}						t_rgba;
 
-typedef struct		s_complex
+typedef struct			s_complex
 {
 	double				re;
 	double				im;
-}					t_complex;
+}						t_complex;
 
 typedef struct			s_img
 {
@@ -65,13 +67,12 @@ typedef struct			s_img
 	int					endian;
 }						t_img;
 
-typedef struct 			s_mlx	t_mlx;
-typedef	int				(*fr_function)(t_mlx *mlx, t_complex c);
+typedef struct s_mlx	t_mlx;
 
 typedef struct			s_fractal
 {
 	char				*name;
-	fr_function			function;
+	int					(*function)(t_mlx *mlx, t_complex c);
 	int					is_static;
 }						t_fractal;
 
@@ -88,7 +89,7 @@ typedef struct			s_thread_args
 	t_thread			args[THREADS];
 }						t_thread_args;
 
-typedef struct			s_mlx
+struct					s_mlx
 {
 	void				*mlx_ptr;
 	void				*win_ptr;
@@ -104,14 +105,14 @@ typedef struct			s_mlx
 	t_img				*image;
 	t_fractal			*fractal;
 	t_thread_args		thr_args;
-}						t_mlx;
+};
 
-t_mlx 					*mlx_window_img_init(t_mlx *mlx);
+t_mlx					*mlx_window_img_init(t_mlx *mlx);
 t_img					*del_image(t_mlx *mlx, t_img *image);
 t_mlx					*mlx_delete(t_mlx *mlx);
+int						mlx_delete_all(t_mlx *fr, int count);
 t_complex				init_complex(double re, double im);
 void					fractal_init(t_mlx *mlx);
-
 void					draw(t_mlx *mlx);
 void					draw_by_multi_threads(t_mlx *mlx);
 void					*draw_thread(void *cur_t);
@@ -121,11 +122,9 @@ void					set_pixel(t_mlx *mlx, int x, int y, t_rgba color);
 t_rgba					get_color(int iteration, t_mlx *mlx);
 void					draw_help(t_mlx *mlx);
 void					clear_img(t_img *img);
-
 int						handle_key(int key, t_mlx *mlx);
 int						zoom_change(int key, int x, int y, t_mlx *mlx);
 int						julia_mouse_move(int x, int y, t_mlx *mlx);
-
 int						f_mandelbrot(t_mlx *mlx, t_complex c);
 int						f_celtic_mandelbrot(t_mlx *mlx, t_complex c);
 int						f_julia(t_mlx *mlx, t_complex c);
@@ -133,7 +132,6 @@ int						f_burningship(t_mlx *mlx, t_complex c);
 int						f_perpendicular_burning_ship(t_mlx *mlx, t_complex c);
 int						f_mandelbar(t_mlx *mlx, t_complex c);
 int						f_celtic_mandelbar(t_mlx *mlx, t_complex c);
-
 int						pr_out(char *out_str);
 int						usage_out(void);
 
