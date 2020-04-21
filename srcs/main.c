@@ -6,7 +6,7 @@
 /*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 22:03:05 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/04/21 16:38:27 by lbellona         ###   ########.fr       */
+/*   Updated: 2020/04/21 20:47:21 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int						mlx_delete_all(t_mlx *fr, int count)
 		mlx_delete(&fr[count]);
 		count--;
 	}
+	exit(1);
 	return (1);
 }
 
