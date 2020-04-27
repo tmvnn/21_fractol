@@ -6,7 +6,7 @@
 #    By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:32:39 by lbellona          #+#    #+#              #
-#    Updated: 2020/04/21 19:59:09 by lbellona         ###   ########.fr        #
+#    Updated: 2020/04/27 12:27:37 by lbellona         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,9 @@ SOURCES 	= main.c \
 WWW 		= -Wall -Wextra -Werror -O3
 
 NAME 		= fractol
+HEADER		= includes/fractol.h
 FT			= ./libft/
-FT_LIB	= $(addprefix $(FT),libft.a)
+FT_LIB		= $(addprefix $(FT),libft.a)
 
 SRCSDIR     = srcs
 SRCS 	 	= $(addprefix $(SRCSDIR)/, $(SOURCES))
@@ -59,7 +60,7 @@ $(MLX_LIB):
 $(NAME): $(OBJS_DIR)
 	gcc $(WWW) $(OBJS_DIR) $(MLX_LNK) -o $@  -L libft -lft
 
-$(SRCSDIR)/%.o:$(SRCSDIR)/%.c
+$(SRCSDIR)/%.o:$(SRCSDIR)/%.c $(HEADER)
 	gcc $(WWW) $(INCLUDES) $(MLX_INC) -o $@ -c $<
 
 clean:
