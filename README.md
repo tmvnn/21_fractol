@@ -2,29 +2,15 @@
 
 ![Fract'ol](/images/fract-ol.svg)
 
-Fract'ol is a School 42 project. The purpose of this project is to create fractal renderer.
+Fract'ol is a 21School project. The goal is to create fractal renderer.
 
-Note that **macOS is only supported**.
+Note that this project only supports **macOS and Linux (not tested)**.
 
-[`fract_ol.en.pdf`](/fract_ol.en.pdf) is the task file.
-
-## Wiki
-
-You can check [wiki-pages](../../wiki/) if you want to read detailed explanations and tips. Wiki-pages were written **in Russian**.
-
-## How to clone?
-
-This repository includes submodule. So if you want to clone it, you can use the following command:
-
-```
-git clone --recurse-submodules <repository url>
-```
-
-If you will use `git clone <repository url>` instead of, you will get the empty `libft` folder.
+[`fract_ol.en.pdf`](/subject/fract_ol.en.pdf) is the task file.
 
 ## Installation
 
-Clone repository and then go into the created directory and run the following command:
+Clone repository then navigate to the created directory and run the following command:
 
 ```
 make
@@ -38,13 +24,13 @@ You can run the project with the following command:
 ./fractol <name>
 ```
 
-For example, you can specify Mandelbrot fractal:
+For example, you can specify julia (case sensitive) fractal:
 
 ```
-./fractol Mandelbrot
+./fractol julia
 ```
 
-![Mandelbrot](/images/mandelbrot.png)
+![Julia](/images/julia.png)
 
 Multi-window mode is also supported. For example, you can run the following command to launch two windows:
 
@@ -52,26 +38,16 @@ Multi-window mode is also supported. For example, you can run the following comm
 ./fractol <name> <name>
 ```
 
-You can specify up to 10 fractal names for one launch.
+You can specify up to 7 fractal names for one launch.
+There are 7 different fractals are avaliable:
 
-There are available the following fractals:
-
-* Mandelbrot
-* Julia
-* Burning Ship
-* Mandelbar
-* Celtic Mandelbrot
-* Celtic Mandelbar
-* Celtic Perpendicular
-* Perpendicular Mandelbrot
-* Perpendicular Burning Ship
-* Perpendicular Buffalo
-
-Note that for a-few-word names you must use quotes:
-
-```
-./fractol "Perpendicular Burning Ship"
-```
+* mandelbrot
+* celtic_mandelbrot
+* julia
+* burningship
+* perpendicular_burningship
+* mandelbar
+* celtic_mandelbar
 
 ## Controls
 
