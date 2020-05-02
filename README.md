@@ -1,8 +1,8 @@
 # Fract'ol
 
-![Fract'ol](/images/fract-ol.svg)
+![Fract'ol](/images/fractals.png)
 
-Fract'ol is a 21School project. The goal is to create fractal renderer.
+Fract'ol is a School 21 project. The goal is to create fractal renderer.
 
 Note that this project only supports **macOS and Linux (not tested)**.
 
